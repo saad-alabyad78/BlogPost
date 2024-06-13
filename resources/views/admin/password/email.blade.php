@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Send Password Reset Code To Email</title>
+    <title>Admin Send Password Reset Code To Email</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
@@ -11,7 +11,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Send Password Reset Link To Email') }}</div>
+                    <div class="card-header">{{ __('Admin Send Password Reset Link To Email') }}</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -20,7 +20,7 @@
                             </div>
                         @endif
 
-                        <form method="POST" action="{{ route('user.password.email') }}">
+                        <form method="POST" action="{{ route('admin.password.email') }}">
                             @csrf
 
                             <div class="form-group">

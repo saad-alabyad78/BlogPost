@@ -13,7 +13,7 @@ class PostPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true; 
     }
 
     /**
@@ -21,7 +21,7 @@ class PostPolicy
      */
     public function view(User $user, Post $post): bool
     {
-        //
+        return auth()->check() ;
     }
 
     /**
@@ -37,7 +37,7 @@ class PostPolicy
      */
     public function update(User $user, Post $post): bool
     {
-        return auth()->check() ;
+        return auth()->check() && $user->posts()->find($post->id) ;
     }
 
     /**
@@ -45,7 +45,7 @@ class PostPolicy
      */
     public function delete(User $user, Post $post): bool
     {
-        return auth()->check() ;
+        return auth()->check() && $user->posts()->find($post->id);
     }
 
     /**
@@ -53,7 +53,7 @@ class PostPolicy
      */
     public function restore(User $user, Post $post): bool
     {
-        //
+        return false ;
     }
 
     /**
@@ -61,6 +61,6 @@ class PostPolicy
      */
     public function forceDelete(User $user, Post $post): bool
     {
-        //
+        return false ;
     }
 }

@@ -1,25 +1,24 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Enums\Roles;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 
-
-class PasswordController extends Controller
+class AdminPasswordController extends Controller
 {
     public function showForgetForm()
     {
-        return view('password.email');
+        return view('admin.password.email');
     }
 
     public function sendResetEmail(Request $request)
     {
         $request->validate(['email' => 'required|email']);
 
-        $status = Password::broker('users')->sendResetLink(
+        $status = Password::sendResetLink(
             $request->only('email')
         );
 
@@ -43,7 +42,7 @@ class PasswordController extends Controller
             'password' => 'required|min:8|confirmed',
         ]);
 
-        $status = Password::broker('users')->reset(
+        $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function ($user, $password) {
                 $user->forceFill([
@@ -53,8 +52,7 @@ class PasswordController extends Controller
         );
 
         return $status === Password::PASSWORD_RESET
-                    ? redirect()->route('user.login')->with('status', __($status))
+                    ? redirect()->route('admin.login')->with('status', __($status))
                     : back()->withErrors(['email' => [__($status)]]);
     }
-
 }

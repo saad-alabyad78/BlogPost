@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Admin Register</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
@@ -13,10 +13,10 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
+                    <div class="card-header">{{ __('Admin Register') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('user.register') }}">
+                        <form method="POST" action="{{ route('admin.register') }}">
                             @csrf
 
                             <div class="form-group">
@@ -58,7 +58,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
-                                <a href="{{ route('user.login') }}" class="btn btn-secondary">
+                                <a href="{{ route('admin.login') }}" class="btn btn-secondary">
                                     {{ __('Login') }}
                                 </a>
                             </div>

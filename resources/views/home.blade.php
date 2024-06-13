@@ -11,18 +11,18 @@
         <nav>
             <ul>
                 @guest <!-- Show register and login links for guests -->
-                    <li><a href="{{ route('register') }}">Register</a></li>
-                    <li><a href="{{ route('login') }}">Login</a></li>
+                    <li><a href="{{ route('user.register') }}">Register</a></li>
+                    <li><a href="{{ route('user.login') }}">Login</a></li>
                 @else <!-- Show logout link for authenticated users -->
                     <li>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                        <form id="logout-form" action="{{ route('user.logout') }}" method="POST">
                             @csrf
                             <button type="submit">Logout</button>
                         </form>
                     </li>
                     @can('create', App\Models\Post::class)
                         <!-- Show create post link if the user can create posts -->
-                        <li><a href="{{ route('posts.create') }}">Create Post</a></li>
+                        <li><a href="{{ route('user.posts.create') }}">Create Post</a></li>
                     @endcan
                 @endguest
             </ul>
@@ -37,11 +37,15 @@
                 <img src="{{ $post->image_url }}" alt="{{ $post->title }}">
                 @can('update', $post)
                     <!-- Show update link if the user can update the post -->
-                    <a href="{{ route('posts.edit', $post->id) }}">Update</a>
+                    <a href="{{ route('user.posts.edit', $post->id) }}">Update</a>
+                @endcan
+                @can('view', $post)
+                    <!-- Show update link if the user can view the post -->
+                    <a href="{{ route('user.posts.show', $post->id) }}">Show</a>
                 @endcan
                 @can('delete', $post)
                     <!-- Show delete link if the user can delete the post -->
-                    <form action="{{ route('posts.delete', $post->id) }}" method="POST" style="display:inline;">
+                    <form action="{{ route('user.posts.delete', $post->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit">Delete</button>

@@ -14,17 +14,17 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
                     @guest
-                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('user.login') }}">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('user.register') }}">Register</a></li>
                     @else
                         <li class="nav-item">
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                            <form id="logout-form" action="{{ route('user.logout') }}" method="POST">
                                 @csrf
                                 <button type="submit" class="btn btn-link nav-link">Logout</button>
                             </form>
                         </li>
                         @can('create', App\Models\Post::class)
-                            <li class="nav-item"><a class="nav-link" href="{{ route('posts.create') }}">Create Post</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('user.posts.create') }}">Create Post</a></li>
                         @endcan
                     @endguest
                 </ul>

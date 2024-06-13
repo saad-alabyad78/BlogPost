@@ -4,6 +4,6 @@ namespace App\Enums;
 
 class Roles
 {
-    public const WRITER = 'writer';
+    public const USER = 'user';
     public const ADMIN = 'admin';
 }

@@ -19,7 +19,7 @@
                 </ul>
             </div>
         @endif
-        <form method="POST" action="{{ route('user.password.update') }}">
+        <form method="POST" action="{{ route('admin.password.update') }}">
             @csrf
             <input type="hidden" name="token" value="{{ $token }}">
             <input type="hidden" name="email" value="{{ $email }}">

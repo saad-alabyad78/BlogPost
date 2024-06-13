@@ -25,8 +25,8 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'media_url' => 'nullable|url',
-            'media_type' => Rule::in([MediaTypes::AUDIO , MediaTypes::VIDEO , MediaTypes::IMAGE]) ,
+            'media_url' => 'required_with:media_type|nullable|url',
+            'media_type' => ['required_with:media_url', 'nullable' ,Rule::in([MediaTypes::AUDIO , MediaTypes::VIDEO , MediaTypes::IMAGE])] ,
         ]);
 
         
@@ -38,13 +38,11 @@ class PostController extends Controller
             'media_type' => $request->media_type ,
         ]);
 
-        $post->save();
+        //$post->save();
 
         auth()->user()->posts()->save($post) ;
 
-        return auth()->user()->posts() ;
-
-        return redirect()->route('home')->with('success', 'Post created successfully');
+        return redirect()->route('user.home')->with('success', 'Post created successfully');
     }
 
     public function show(Post $post)
@@ -62,17 +60,19 @@ class PostController extends Controller
         $request->validate([
             'title' => 'string|max:255',
             'description' => 'string',
-            'image_url' => 'nullable|url',
+            'media_url' => 'required_with:media_type|nullable|url',
+            'media_type' => ['required_with:media_url', 'nullable' , Rule::in([MediaTypes::AUDIO , MediaTypes::VIDEO , MediaTypes::IMAGE])] ,
         ]);
 
+        
         $post->update($request->all());
-
-        return redirect()->route('home')->with('success', 'Post updated successfully');
+        
+        return redirect()->route('user.home')->with('success', 'Post updated successfully');
     }
 
     public function destroy(Post $post)
     {
         $post->delete();
-        return redirect()->route('home')->with('success', 'Post deleted successfully');
+        return redirect()->route('user.home')->with('success', 'Post deleted successfully');
     }
 }

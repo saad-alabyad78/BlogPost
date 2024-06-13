@@ -1,16 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Enums\Roles;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
-class RegisterUserController extends Controller
+class AdminRegisterController extends Controller
 {
     public function show()
     {
-        return view('register.show') ;
+        return view('admin.register.show') ;
     }
     public function store(Request $request)
     {
@@ -26,8 +29,12 @@ class RegisterUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        $role = Role::where('name' , Roles::ADMIN)->first() ;
+        
+        $user->roles()->save($role) ;
+
         auth()->login($user);
 
-        return redirect()->route('user.home');
+        return redirect()->route('admin.home');
     }
 }

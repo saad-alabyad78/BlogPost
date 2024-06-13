@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('post_users', function (Blueprint $table) {
+        Schema::create('post_user', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete() ;
             $table->foreignIdFor(Post::class)->constrained()->cascadeOnDelete() ;
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('post_users');
+        Schema::dropIfExists('post_user');
     }
 };
