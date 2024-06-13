@@ -1,0 +1,83 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.card {
+    background-color: #ffffff;
+    border: 1px solid #e3e3e3;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.card-header {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 1px solid #e3e3e3;
+    padding-bottom: 10px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+.form-control.is-invalid {
+    border-color: #e3342f;
+}
+
+.invalid-feedback {
+    color: #e3342f;
+    font-size: 0.875rem;
+    margin-top: 5px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    background-color: #007bff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}

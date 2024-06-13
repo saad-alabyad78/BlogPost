@@ -1,0 +1,25 @@
+/* Style for the container of each post */
+.post {
+    margin-bottom: 20px; /* Add some spacing between posts */
+    border: 1px solid #ccc; /* Add a border around each post */
+    padding: 20px; /* Add padding inside each post */
+}
+
+/* Style for post title */
+.post h2 {
+    color: #333; /* Set the color of the title */
+    font-size: 24px; /* Set the font size of the title */
+}
+
+/* Style for post description */
+.post p {
+    color: #666; /* Set the color of the description */
+    font-size: 16px; /* Set the font size of the description */
+}
+
+/* Style for post image */
+.post img {
+    max-width: 100%; /* Make sure images don't exceed the container width */
+    height: auto; /* Maintain aspect ratio of images */
+    margin-top: 10px; /* Add some spacing between image and text */
+}
