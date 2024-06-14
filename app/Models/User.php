@@ -52,7 +52,7 @@ class User extends Authenticatable
     }
     public function roles():BelongsToMany
     {
-        return $this->BelongsToMany(Role::class);
+        return $this->BelongsToMany(Role::class);//only one role for the user
     }
     public function permissions():BelongsToMany
     {

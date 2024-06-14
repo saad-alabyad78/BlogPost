@@ -22,7 +22,7 @@ class UserPolicy
         return 
         $user->permissions()->find($permission->id)
         or
-        $user->roles()->permissions()->find($permission->id)
+        $user->roles()->first()->permissions()->find($permission->id)
         ;
     }
 

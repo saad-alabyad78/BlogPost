@@ -20,7 +20,7 @@ class PostFactory extends Factory
         return [
             'title' => fake()->title() ,
             'description' => fake()->paragraph(5) ,
-            'media_url' => fake()->imageUrl() ,
+            'media_url' => 'http://127.0.0.1:8000/download.jpeg' ,
             'media_type' => MediaTypes::IMAGE ,
         ];
     }

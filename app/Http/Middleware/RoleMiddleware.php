@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\Enums\Roles;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -13,35 +14,29 @@ class RoleMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next , ...$roles): Response
+    public function handle(Request $request, Closure $next , string $role): Response
     {
         
         if(!auth()->check()){
-            return response()->json(
-                ['message' => 'Unauthenticated.'] ,
-                 401 ,
-                ['Accept' => 'application/json']) ;
+            return $next($request); // could be guest
         }
+
+        $currUser = auth()->user() ;
+        $currRoleName = $currUser->roles()->pluck('name')->first() ;
         
-        if(in_array('no_role' , $roles))
+        if($currRoleName != $role)
         {
-            if(auth()->user()->role() != null)
+            
+            if($currRoleName == Roles::ADMIN)
             {
-                return response()->json(
-                    ['message' =>'bruh! you already have a role'] ,
-                     403 ,
-                     ['Accept' => 'application/json']) ;
-            }
-            return $next($request);
+                return redirect()->route('admin.home'); 
+            }return redirect()->route('user.home');
+            
         }
+      
 
-        if(!in_array('any' , $roles) and !in_array(auth()->user()->role()->first()->name , $roles)){
-            return response()->json(
-                ['message' => 'you don\'t have the currect role'] ,
-                 403 ,
-                 ['Accept' => 'application/json']) ;
-        }
-
+        
+        
         return $next($request);
     }
 }

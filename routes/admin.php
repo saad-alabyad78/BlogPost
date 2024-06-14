@@ -9,7 +9,7 @@ use App\Http\Controllers\Admin\AdminPasswordController;
 use App\Http\Controllers\Admin\AdminRegisterController;
 
 Route::group([
-    'middleware' => [] ,
+    'middleware' => ['role:admin'] ,
     'prefix' => 'admin' ,
     'as' => 'admin.' ,
 ] , function() 

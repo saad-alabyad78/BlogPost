@@ -34,7 +34,7 @@
             <div class="post">
                 <h2>{{ $post->title }}</h2>
                 <p>{{ $post->description }}</p>
-                <img src="{{ $post->image_url }}" alt="{{ $post->title }}">
+                <img src="{{ $post->media_url }}" alt="{{ $post->title }}">
                 @can('update', $post)
                     <!-- Show update link if the user can update the post -->
                     <a href="{{ route('user.posts.edit', $post->id) }}">Update</a>

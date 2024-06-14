@@ -7,7 +7,7 @@ use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\RegisterUserController;
 
 Route::group([
-    'middleware' => [] ,
+    'middleware' => ['role:user'] ,
     'as' => 'user.' ,
 ] , function() 
 {
