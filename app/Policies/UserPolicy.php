@@ -11,19 +11,21 @@ class UserPolicy
      /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, User $model): bool
+    public function delete(User $user): bool
     {
+        //todo: cant delete admin
+        //todo: cant delete your self
+        
         if(!auth()->check())return false ;
 
         if(!$user->is_admin())return false;
         
         $permission = Permission::where('name', 'delete-user')->first() ; 
-
+ 
         return 
         $user->permissions()->find($permission->id)
         or
-        $user->roles()->first()->permissions()->find($permission->id)
-        ;
+        $user->roles()->first()->permissions()->find($permission->id);
     }
 
 }

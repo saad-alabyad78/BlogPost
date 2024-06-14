@@ -25,7 +25,6 @@ class AdminPostController extends Controller
 
     public function destroyPost(Post $post)
     {
-
         $post->delete();
         return redirect()->route('admin.home')->with('success', 'Post deleted successfully.');
     }

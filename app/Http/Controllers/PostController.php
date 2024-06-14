@@ -29,8 +29,6 @@ class PostController extends Controller
             'media_type' => ['required_with:media_url', 'nullable' ,Rule::in([MediaTypes::AUDIO , MediaTypes::VIDEO , MediaTypes::IMAGE])] ,
         ]);
 
-        
-
         $post = new Post([
             'title' => $request->title,
             'description' => $request->description,

@@ -47,7 +47,8 @@ class PostPolicy
     public function delete(User $user, Post $post): bool
     {
         if(!auth()->check())return false ;
-        if($user->posts()->find($post->id) || $user->is_admin())return true;
+
+        if($user->posts()->find($post->id) )return true;
         
         $permission = Permission::where('name', 'delete-post')->first() ; 
 

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminLogController;
+use App\Http\Controllers\Admin\PostUserController;
 use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminPasswordController;
 use App\Http\Controllers\Admin\AdminRegisterController;
@@ -39,8 +40,8 @@ Route::group([
     });
     
     Route::get('post/{post}/users' , [AdminPostController::class , 'showUsers'])->name('post.users');
-    Route::post('post/{post}/addUser/{user}' , [AdminPostController::class , 'addUserToPost'])->name('post.addUser');
-    Route::delete('post/{post}/removeUser/{user}' , [AdminPostController::class , 'removeUserFromPost'])->name('post.removeUser');
+    Route::post('post/{post}/addUser/{user}' , [PostUserController::class , 'create'])->name('post.addUser');
+    Route::delete('post/{post}/removeUser/{user}' , [PostUserController::class , 'destroy'])->name('post.removeUser');
 
     Route::delete('post/{post}' , [PostController::class , 'destroy'])->name('post.delete');
 

@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\User;
+use App\Policies\UserPolicy;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Auth\Notifications\ResetPassword;
 
@@ -26,5 +29,7 @@ class AppServiceProvider extends ServiceProvider
         //         'email' => $user->email,
         //     ], false));
         // });
+
+        //Gate::policy(User::class, UserPolicy::class);
     }
 }
