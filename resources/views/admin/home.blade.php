@@ -19,6 +19,7 @@
                             @csrf
                             <button type="submit">Logout</button>
                         </form>
+                        <li><a href="{{ route('admin.users') }}">Manage Users</a></li>
                     </li>
                 @endguest
             </ul>
@@ -31,7 +32,11 @@
                 <h2>{{ $post->title }}</h2>
                 <p>{{ $post->description }}</p>
                 <img src="{{ $post->image_url }}" alt="{{ $post->title }}">
+
                 
+                <!-- Show update link if the user can update the post -->
+                <a href="{{ route('admin.post.users', $post->id) }}">Show Users</a>
+               
             </div>
         @empty
             <p>No posts found.</p>

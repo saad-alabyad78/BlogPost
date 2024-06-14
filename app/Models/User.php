@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Enums\Roles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -57,4 +58,8 @@ class User extends Authenticatable
     {
         return $this->BelongsToMany(Permission::class);
     }
+    public function is_admin():bool
+    {
+        return $this->roles()->where('name' , Roles::ADMIN)->first() != null ;
+    }  
 }

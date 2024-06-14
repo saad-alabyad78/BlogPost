@@ -97,14 +97,15 @@ return [
             'email' => 'user.password.email' ,
             'expire' => 60,
             'throttle' => 60,
-        ],
+            ],
 
         'admins' => [
             'provider' => 'admins',
             'table' => 'password_reset_tokens',
+            'email' => 'admin.password.email' ,
             'expire' => 60,
             'throttle' => 60,
-        ],
+            ],
         ],
 
     /*

@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminLogController;
 use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminPasswordController;
@@ -36,7 +38,13 @@ Route::group([
         Route::post('reset', [AdminPasswordController::class, 'reset'])->name('password.update');
     });
     
-    Route::prefix('posts')->group(function(){
-        //show list of posts in admin side 
-    });
+    Route::get('post/{post}/users' , [AdminPostController::class , 'showUsers'])->name('post.users');
+    Route::post('post/{post}/addUser/{user}' , [AdminPostController::class , 'addUserToPost'])->name('post.addUser');
+    Route::delete('post/{post}/removeUser/{user}' , [AdminPostController::class , 'removeUserFromPost'])->name('post.removeUser');
+
+    Route::delete('post/{post}' , [PostController::class , 'destroy'])->name('post.delete');
+
+    Route::get('/users', [UserController::class, 'index'])->name('users');
+    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
 });

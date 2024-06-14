@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Permission;
 use Illuminate\Auth\Access\Response;
 
 class PostPolicy
@@ -29,7 +30,7 @@ class PostPolicy
      */
     public function create(User $user): bool
     {
-        return auth()->check() ;
+        return auth()->check() and !$user->is_admin(); // only users creates blogs
     }
 
     /**
@@ -45,7 +46,16 @@ class PostPolicy
      */
     public function delete(User $user, Post $post): bool
     {
-        return auth()->check() && $user->posts()->find($post->id);
+        if(!auth()->check())return false ;
+        if($user->posts()->find($post->id) || $user->is_admin())return true;
+        
+        $permission = Permission::where('name', 'delete-post')->first() ; 
+
+        return 
+        $user->permissions()->find($permission->id)
+        or
+        $user->roles()->permissions()->find($permission->id)
+        ;
     }
 
     /**

@@ -26,12 +26,7 @@ Route::group([
         ->name('logout')
         ->middleware('auth');
     
-    Route::prefix('password')->group(function(){
-        Route::get('reset', [PasswordController::class, 'showForgetForm'])->name('password.forget');
-        Route::post('email', [PasswordController::class, 'sendResetEmail'])->name('password.email');
-        Route::get('reset/{token}', [PasswordController::class, 'showResetForm'])->name('password.reset');
-        Route::post('reset', [PasswordController::class, 'reset'])->name('password.update');
-    });
+    
     
     Route::get('/', [PostController::class, 'index'])->name('home');
     
@@ -51,3 +46,10 @@ Route::group([
 });
 
 require 'admin.php' ;
+
+Route::prefix('password')->group(function(){
+    Route::get('reset', [PasswordController::class, 'showForgetForm'])->name('password.forget');
+    Route::post('email', [PasswordController::class, 'sendResetEmail'])->name('password.email');
+    Route::get('reset/{token}', [PasswordController::class, 'showResetForm'])->name('password.reset');
+    Route::post('reset', [PasswordController::class, 'reset'])->name('password.update');
+});

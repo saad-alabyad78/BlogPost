@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Roles;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
@@ -52,8 +53,16 @@ class PasswordController extends Controller
             }
         );
 
+        $user = User::where('email' , $request->email)->first() ;
+
         return $status === Password::PASSWORD_RESET
-                    ? redirect()->route('user.login')->with('status', __($status))
+                    ? 
+                    (
+                        $user->is_admin()?
+                        redirect()->route('admin.login')->with('status', __($status))
+                        :
+                        redirect()->route('user.login')->with('status', __($status))
+                    )
                     : back()->withErrors(['email' => [__($status)]]);
     }
 
