@@ -48,6 +48,11 @@ Follow these steps to set up the project on your local machine.
     ```sh
     php artisan key:generate
     ```
+6. **Database:**
+
+    ```sh
+    php artisan migrate --seed
+    ```
 
 ## Usage
 
