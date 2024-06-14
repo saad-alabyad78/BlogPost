@@ -16,7 +16,7 @@ Follow these steps to set up the project on your local machine.
 1. **Clone the repository:**
 
     ```sh
-    git clone <repository-url>
+    git clone git@github.com:saad-alabyad78/BlogPost.git
     ```
 
 2. **Navigate to the project directory:**
